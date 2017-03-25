@@ -1,0 +1,45 @@
+<div class="container">
+    <h1>Application note (angular)</h1>
+    <a>
+        <button class="btn btn-primary">
+            <span class="glyphicon glyphicon-pencil"></span>
+            Gestion des catégories
+        </button>
+    </a>
+    <a>
+        <button class="btn btn-primary">
+            <span class="glyphicon glyphicon-plus"></span>
+            Ajouter une note
+        </button>
+    </a><br>
+
+    <div *ngFor="let note of notes">
+        <div class="note" id="{{note.id}}">
+                <div class="row">
+                    <div class="well well-lg">
+                        <legend>
+                            <b>{{note.title}}<br></b>
+                            {{note.categorie.name}} -
+                            {{note.date}}
+                        </legend>
+                        <div class="well">
+                            <div class='panel-body'>
+                                {{note.content}}
+                            </div>
+                        </div>
+                        <a>
+                            <button type="button" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </a>
+                        <a>
+                            <button type="button" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </button>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+    </div>
+</div>
