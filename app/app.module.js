@@ -9,21 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var app_component_1 = require('./app.component');
 var newNote_component_1 = require('./newNote.component');
-var appRoutes = [
-    { path: 'home', component: app_component_1.AppComponent },
-    { path: 'newNote', component: newNote_component_1.newNoteComponent }
-];
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, router_1.RouterModule.forRoot(appRoutes)],
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
             declarations: [app_component_1.AppComponent, newNote_component_1.newNoteComponent],
             bootstrap: [app_component_1.AppComponent]
         }), 

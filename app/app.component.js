@@ -11,6 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var AppComponent = (function () {
     function AppComponent() {
+        this.display = false;
+        this.displayModify = false;
+        this.selectedNote = 0;
+        this.noteToModify = null;
         this.notes = [{
                 "title": "première note",
                 "content": "test",
@@ -32,8 +36,15 @@ var AppComponent = (function () {
             }
         ];
     }
-    AppComponent.prototype.newNote = function (evt) {
-        console.log(evt);
+    AppComponent.prototype.turnDisplay = function () {
+        this.display = !this.display;
+        console.log(this.display);
+    };
+    // TODO: DO input for modifing notes
+    AppComponent.prototype.modifyNote = function (note) {
+        this.displayModify = !this.displayModify;
+        this.selectedNote = note.id;
+        this.noteToModify = note;
     };
     AppComponent = __decorate([
         core_1.Component({

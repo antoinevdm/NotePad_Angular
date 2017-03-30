@@ -7,12 +7,17 @@
         </button>
     </a>
     <a>
-        <button class="btn btn-primary">
+        <button (click)="turnDisplay()" class="btn btn-primary">
             <span class="glyphicon glyphicon-plus"></span>
             Ajouter une note
         </button>
-    </a><br>
-
+    </a>
+    <br>
+    <div *ngIf="display">
+        <br>
+        <new-note (cancelEvent)="turnDisplay()"></new-note>
+    </div>
+    <br>
     <div *ngFor="let note of notes">
         <div class="note" id="{{note.id}}">
                 <div class="row">
@@ -34,12 +39,20 @@
                         </a>
                         <a>
                             <button type="button" class="btn btn-primary">
-                                <span class="glyphicon glyphicon-edit"></span>
+                                <span (click)="modifyNote(note)" class="glyphicon glyphicon-edit">
+                                </span>
                             </button>
                         </a>
-                    </div>
+                        <div *ngIf="displayModify && selectedNote == note.id">
+                            <br>
+                            <new-note (cancelEvent)="modifyNote()"
+                                [modifiedNote]="noteToModify">
+                            </new-note>
+                        </div>
 
+                    </div>
                 </div>
+
             </div>
     </div>
 </div>

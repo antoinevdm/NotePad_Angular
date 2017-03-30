@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 //http://stackoverflow.com/questions/37252146/angular-2-redirect-on-click
-import { Router } from '@angular/router';
+import {newNoteComponent} from './newNote.component';
 
 @Component({
   selector: 'my-app', //selector "my-app" can be used as a html tag now
@@ -9,6 +9,11 @@ import { Router } from '@angular/router';
 })
 
 export class AppComponent  {
+    display: boolean = false;
+    displayModify: boolean = false;
+    selectedNote: number = 0;
+    noteToModify: any = null;
+
     notes = [{
         "title" : "première note",
         "content" : "test",
@@ -30,7 +35,15 @@ export class AppComponent  {
     }
     ]
 
-    newNote(evt:any) {
-        console.log(evt);
+    turnDisplay() {
+        this.display = !this.display;
+        console.log(this.display);
+    }
+
+    // TODO: DO input for modifing notes
+    modifyNote(note: any) {
+        this.displayModify = !this.displayModify;
+        this.selectedNote = note.id;
+        this.noteToModify = note;
     }
 }
