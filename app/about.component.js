@@ -9,17 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
+var aboutComponent = (function () {
+    function aboutComponent() {
     }
-    AppComponent = __decorate([
+    aboutComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            templateUrl: 'app/templates/main.html',
+            selector: 'about',
+            template: "\n    <div class=\"well well-lg\">\n        <div class=\"row\">\n            This is a angular It engineer project.\n            <br>\n            <br>\n            Working with a synfoony API, used to show notes,\n            edit them or edit a new one.\n            <br>\n            Each note have a \"category\" chosen from those\n            available with the synfony API or one you created.\n            <br>\n            <br>\n            Finaly you can search tagged word inside notes.\n        </div>\n    </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], aboutComponent);
+    return aboutComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.aboutComponent = aboutComponent;
+//# sourceMappingURL=about.component.js.map

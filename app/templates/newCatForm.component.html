@@ -1,0 +1,13 @@
+<div class="well well-lg">
+    <h1>Editer catégorie</h1>
+    <form>
+      <div class="form-group">
+        <label for="title">Nom de la catégorie</label>
+            <input type="text" class="form-control"
+                id="name" [(ngModel)]="modifiedCat.name"
+                 [ngModelOptions]="{standalone: true}" required>
+      </div>
+      <button type="submit" class="btn btn-success">Valider</button>
+      <button (click)="onCanceled()" class="btn btn-danger">Annuler</button>
+    </form>
+</div>

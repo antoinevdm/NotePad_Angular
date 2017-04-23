@@ -1,26 +1,22 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { notesComponent } from './notes.component';
+import { notesComponent } from './categories.component';
 
 @Component({
-    selector : 'new-note', //selector "new-note" can be used as a html tag now
-    templateUrl : 'app/templates/newNoteForm.component.html',
+    selector : 'new-cat', //selector "new-note" can be used as a html tag now
+    templateUrl : 'app/templates/newCatForm.component.html',
 })
 
-export class newNoteComponent implements OnInit {
+export class newCatComponent implements OnInit {
     @Output() cancelEvent: EventEmitter<any> = new EventEmitter<any>();
-    @Input() modifiedNote: any;
-
-    categories = ['todo', 'remarque', 'nePasOublier', 'autre'];
+    @Input() modifiedCat: any;
 
     noteFormGroup: FormGroup;
 
     ngOnInit() {
         this.noteFormGroup = new FormGroup({
             noteTitle: new FormControl(),
-            noteContent: new FormControl()
         });
-        // TODO : trouble shoot empty while new note
     }
 
     onCanceled() {

@@ -1,58 +1,11 @@
 <div class="container">
-    <h1>Application note (angular)</h1>
-    <a>
-        <button class="btn btn-primary">
-            <span class="glyphicon glyphicon-pencil"></span>
-            Gestion des catégories
-        </button>
-    </a>
-    <a>
-        <button (click)="turnDisplay()" class="btn btn-primary">
-            <span class="glyphicon glyphicon-plus"></span>
-            Ajouter une note
-        </button>
-    </a>
-    <br>
-    <div *ngIf="display">
-        <br>
-        <new-note (cancelEvent)="turnDisplay()"></new-note>
+    <div class="row">
+        <h1>Angular Note Application</h1>
+        <nav class="navbar navbar-light" style="background-color: #E6E6E6;">
+            <a class="navbar-brand" routerLink="/home">Home</a>
+            <a class="navbar-brand" routerLink="/cat">Categories</a>
+            <a class="navbar-brand" routerLink="/about">About</a>
+        </nav>
     </div>
-    <br>
-    <div *ngFor="let note of notes">
-        <div class="note" id="{{note.id}}">
-                <div class="row">
-                    <div class="well well-lg">
-                        <legend>
-                            <b>{{note.title}}<br></b>
-                            {{note.categorie.name}} -
-                            {{note.date}}
-                        </legend>
-                        <div class="well">
-                            <div class='panel-body'>
-                                {{note.content}}
-                            </div>
-                        </div>
-                        <a>
-                            <button type="button" class="btn btn-primary">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </button>
-                        </a>
-                        <a>
-                            <button type="button" class="btn btn-primary">
-                                <span (click)="modifyNote(note)" class="glyphicon glyphicon-edit">
-                                </span>
-                            </button>
-                        </a>
-                        <div *ngIf="displayModify && selectedNote == note.id">
-                            <br>
-                            <new-note (cancelEvent)="modifyNote()"
-                                [modifiedNote]="noteToModify">
-                            </new-note>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-    </div>
+    <router-outlet></router-outlet>
 </div>

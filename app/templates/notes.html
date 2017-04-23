@@ -1,0 +1,51 @@
+<div *ngFor="let note of emptyNote">
+    <button (click)="modifyNote(note)" class="btn btn-primary">
+        <span class="glyphicon glyphicon-plus"></span>
+        Ajouter une note
+    </button>
+    <br>
+    <div *ngIf="display && selectedNote == note.id">
+        <br>
+        <new-note (cancelEvent)="modifyNote(note)"
+            [modifiedNote]="noteToModify">
+        </new-note>
+    </div>
+</div>
+<br>
+<div *ngFor="let note of notes">
+    <div class="note" id="{{note.id}}">
+        <div class="row">
+            <div class="well well-lg">
+                <legend>
+                    <b>{{note.title}}<br></b>
+                    {{note.categorie.name}} -
+                    {{note.date}}
+                </legend>
+                <div class="well">
+                    <div class='panel-body'>
+                        {{note.content}}
+                    </div>
+                </div>
+                <a>
+                    <button type="button" class="btn btn-primary">
+                        <span (click)="deleteNote(note)"
+                            class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </a>
+                <a>
+                    <button type="button" class="btn btn-primary">
+                        <span (click)="modifyNote(note)"
+                            class="glyphicon glyphicon-edit">
+                        </span>
+                    </button>
+                </a>
+                <div *ngIf="display && selectedNote == note.id">
+                    <br>
+                    <new-note (cancelEvent)="modifyNote(note)"
+                        [modifiedNote]="noteToModify">
+                    </new-note>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

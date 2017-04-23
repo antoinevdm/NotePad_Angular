@@ -10,39 +10,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
-var newNoteComponent = (function () {
-    function newNoteComponent() {
+var newCatComponent = (function () {
+    function newCatComponent() {
         this.cancelEvent = new core_1.EventEmitter();
-        this.categories = ['todo', 'remarque', 'nePasOublier', 'autre'];
     }
-    newNoteComponent.prototype.ngOnInit = function () {
+    newCatComponent.prototype.ngOnInit = function () {
         this.noteFormGroup = new forms_1.FormGroup({
             noteTitle: new forms_1.FormControl(),
-            noteContent: new forms_1.FormControl()
         });
-        // TODO : trouble shoot empty while new note
     };
-    newNoteComponent.prototype.onCanceled = function () {
+    newCatComponent.prototype.onCanceled = function () {
         this.cancelEvent.emit();
     };
-    newNoteComponent.prototype.onNoteSubmit = function () {
+    newCatComponent.prototype.onNoteSubmit = function () {
     };
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
-    ], newNoteComponent.prototype, "cancelEvent", void 0);
+    ], newCatComponent.prototype, "cancelEvent", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], newNoteComponent.prototype, "modifiedNote", void 0);
-    newNoteComponent = __decorate([
+    ], newCatComponent.prototype, "modifiedCat", void 0);
+    newCatComponent = __decorate([
         core_1.Component({
-            selector: 'new-note',
-            templateUrl: 'app/templates/newNoteForm.component.html',
+            selector: 'new-cat',
+            templateUrl: 'app/templates/newCatForm.component.html',
         }), 
         __metadata('design:paramtypes', [])
-    ], newNoteComponent);
-    return newNoteComponent;
+    ], newCatComponent);
+    return newCatComponent;
 }());
-exports.newNoteComponent = newNoteComponent;
-//# sourceMappingURL=newNote.component.js.map
+exports.newCatComponent = newCatComponent;
+//# sourceMappingURL=newCat.component.js.map

@@ -11,15 +11,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
+var router_1 = require('@angular/router');
 var app_component_1 = require('./app.component');
+var notes_component_1 = require('./notes.component');
 var newNote_component_1 = require('./newNote.component');
+var categories_component_1 = require('./categories.component');
+var newCat_component_1 = require('./newCat.component');
+var about_component_1 = require('./about.component');
+var appRoutes = [
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: 'home', component: notes_component_1.notesComponent },
+    { path: 'cat', component: categories_component_1.categoriesComponent },
+    { path: 'about', component: about_component_1.aboutComponent }
+];
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
-            declarations: [app_component_1.AppComponent, newNote_component_1.newNoteComponent],
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, router_1.RouterModule.forRoot(appRoutes)],
+            declarations: [app_component_1.AppComponent, newNote_component_1.newNoteComponent, categories_component_1.categoriesComponent,
+                notes_component_1.notesComponent, newCat_component_1.newCatComponent, about_component_1.aboutComponent],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])
