@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { notesComponent } from './categories.component';
+import { categoriesComponent } from './categories.component';
 
 @Component({
     selector : 'new-cat', //selector "new-note" can be used as a html tag now

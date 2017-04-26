@@ -13,7 +13,7 @@ var categoriesComponent = (function () {
     function categoriesComponent() {
         this.display = false;
         this.selectedCat = 0;
-        this.catToModidy = null;
+        this.catToModify = null;
         this.emptyCat = [{
                 "id": 0,
                 "name": ""

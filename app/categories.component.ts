@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 export class categoriesComponent {
     display: boolean = false;
     selectedCat: number = 0;
-    catToModidy: any = null;
+    catToModify: any = null;
 
     emptyCat = [{
         "id" : 0,
