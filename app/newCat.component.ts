@@ -9,6 +9,7 @@ import { categoriesComponent } from './categories.component';
 
 export class newCatComponent implements OnInit {
     @Output() cancelEvent: EventEmitter<any> = new EventEmitter<any>();
+    @Output() submitEvent: EventEmitter<any> = new EventEmitter();
     @Input() modifiedCat: any;
 
     noteFormGroup: FormGroup;
@@ -23,6 +24,7 @@ export class newCatComponent implements OnInit {
         this.cancelEvent.emit();
     }
 
-    onNoteSubmit() {
+    onCatSubmit() {
+        this.submitEvent.emit(this.modifiedCat);
     }
 }

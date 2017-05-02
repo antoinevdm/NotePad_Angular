@@ -1,9 +1,11 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { AppComponent } from './app.component';
+import { CategorieService } from './categorie.service';
 
 @Component({
     selector : 'categories',
     templateUrl : 'app/templates/categories.component.html',
+    providers: [CategorieService],
 })
 
 export class categoriesComponent {
@@ -11,27 +13,52 @@ export class categoriesComponent {
     selectedCat: number = 0;
     catToModify: any = null;
 
+    categories : any[];
+
+    constructor(private categorieService : CategorieService) { }
+
     emptyCat = [{
         "id" : 0,
         "name" : ""
     }]
 
-    categories = [{
-        "id" : 1,
-        "name" : "remarque"
-    }, {
-        "id" : 2,
-        "name" : "todo"
-    }, {
-        "id" : 3,
-        "name" : "nePasOublier"
-    }, {
-        "id" : 4,
-        "name" : "autre"
-    }]
+    ngOnInit() {
+        this.categorieService.getCategories().subscribe(
+            data => { this.categories = JSON.parse(data); },
+            err => console.log(err),
+            () => console.log('categories charged')
+        );
+    }
+
+    onSubmitEvent(cat: any) {
+        this.display = false;
+        if (this.selectedCat == 0) {
+            this.categories.push(cat);
+            this.categorieService.createCategorie(cat).subscribe(
+                data => console.log(data),
+                err => console.log(err),
+                () => console.log('categorie added')
+            );
+        } else {
+            this.categorieService.updateCategorie(cat).subscribe(
+                data => console.log(data),
+                err => console.log(err),
+                () => console.log('categorie updated')
+            );
+        }
+    }
 
     deleteCat(cat : any) {
-        // TODO: delete category in databe using API
+        this.categorieService.deleteCategorie(cat).subscribe(
+            data => console.log(data),
+            err => console.log(err),
+            () => console.log('categorie deleted')
+        );
+
+        let index = this.categories.findIndex((n) => (n === cat));
+        if (index != -1) {
+           this.categories.splice(index, 1);
+        }
     }
 
     modifyCat(cat : any) {
@@ -48,5 +75,4 @@ export class categoriesComponent {
             this.catToModify = cat;
         }
     }
-
 }

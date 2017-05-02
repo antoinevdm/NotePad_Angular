@@ -18,6 +18,30 @@ var NoteService = (function () {
         this.http = http;
         this.notesUrl = 'http://localhost/first_project/web/app_dev.php/note/api/note';
     }
+    NoteService.prototype.getNotes = function () {
+        return this.http.get(this.notesUrl)
+            .map(function (res) { return res.json(); });
+    };
+    NoteService.prototype.getNote = function (id) {
+        return this.http.get(this.notesUrl + "/" + id)
+            .map(function (res) { return res.json(); });
+    };
+    NoteService.prototype.createNote = function (note) {
+        return this.http.post(this.notesUrl, this.serialize(note));
+    };
+    NoteService.prototype.updateNote = function (note) {
+        return this.http.put(this.notesUrl + "/" + note.id, this.serialize(note));
+    };
+    NoteService.prototype.deleteNote = function (note) {
+        return this.http.delete(this.notesUrl + "/" + note.id);
+    };
+    NoteService.prototype.serialize = function (note) {
+        return JSON.stringify({
+            'title': note.title,
+            'content': note.content,
+            'categorie': note.categorie.id,
+        });
+    };
     NoteService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
@@ -25,30 +49,4 @@ var NoteService = (function () {
     return NoteService;
 }());
 exports.NoteService = NoteService;
-return this.http.get(this.notesUrl)
-    .map();
-res.json();
-;
-getNote(id, Number);
-{
-    return this.http.get(this.notesUrl + "/" + id)
-        .map();
-    res.json();
-    ;
-}
-createNote(note, Any);
-{
-    return this.http.post(this.notesUrl, JSON.stringify(note));
-}
-updateNote(note, Any);
-{
-    return this.http.put(this.notesUrl + "/" + note.id, JSON.stringify(note));
-}
-deleteNote(id, Number);
-{
-    return this.http.delete(this.notesUrl + "/" + id)
-        .map();
-    res.json();
-    ;
-}
 //# sourceMappingURL=note.service.js.map

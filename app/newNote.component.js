@@ -13,28 +13,36 @@ var forms_1 = require('@angular/forms');
 var newNoteComponent = (function () {
     function newNoteComponent() {
         this.cancelEvent = new core_1.EventEmitter();
-        this.categories = ['todo', 'remarque', 'nePasOublier', 'autre'];
+        this.submitEvent = new core_1.EventEmitter();
     }
     newNoteComponent.prototype.ngOnInit = function () {
         this.noteFormGroup = new forms_1.FormGroup({
             noteTitle: new forms_1.FormControl(),
             noteContent: new forms_1.FormControl()
         });
-        // TODO : trouble shoot empty while new note
     };
     newNoteComponent.prototype.onCanceled = function () {
         this.cancelEvent.emit();
     };
     newNoteComponent.prototype.onNoteSubmit = function () {
+        this.submitEvent.emit(this.modifiedNote);
     };
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
     ], newNoteComponent.prototype, "cancelEvent", void 0);
     __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], newNoteComponent.prototype, "submitEvent", void 0);
+    __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
     ], newNoteComponent.prototype, "modifiedNote", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], newNoteComponent.prototype, "categories", void 0);
     newNoteComponent = __decorate([
         core_1.Component({
             selector: 'new-note',

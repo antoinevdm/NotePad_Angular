@@ -11,26 +11,32 @@ export class CategorieService {
     constructor (private http: Http) {}
     private catUrl = 'http://localhost/first_project/web/app_dev.php/note/api/categorie';
 
-    getCategories() : {
+    getCategories() {
         return this.http.get(this.catUrl)
-            .map((res:Response)) => res.json());
+            .map((res:Response) => res.json());
     }
 
-    getCategorie(id : Number) : {
+    getCategorie(id : Number) {
         return this.http.get(this.catUrl + "/" +id)
-            .map((res:Response)) => res.json());
+            .map((res:Response) => res.json());
     }
 
-    createCategorie(cat : Any) : {
-        return this.http.post(this.catUrl, JSON.stringify(cat));
+    createCategorie(cat : any) {
+        return this.http.post(this.catUrl, this.serialize(cat));
     }
 
-    updateCategorie(cat : Any) : {
-        return this.http.put(this.catUrl + "/" + cat.id, JSON.stringify(cat));
+    updateCategorie(cat : any) {
+        return this.http.put(this.catUrl + "/" + cat.id, this.serialize(cat));
     }
 
-    deleteCategorie(id : Number) : {
-        return this.http.delete(this.catUrl + "/" + id)
-            .map((res:Response)) => res.json());
+    deleteCategorie(cat : any) {
+        return this.http.delete(this.catUrl + "/" + cat.id);
+    }
+
+    private serialize(cat: any) {
+        return JSON.stringify({
+            'id': cat.id,
+            'name' : cat.name,
+        });
     }
 }

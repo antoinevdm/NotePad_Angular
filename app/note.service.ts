@@ -11,26 +11,33 @@ export class NoteService {
     constructor (private http: Http) {}
     private notesUrl = 'http://localhost/first_project/web/app_dev.php/note/api/note';
 
-    getNotes() : {
+    getNotes() {
         return this.http.get(this.notesUrl)
-            .map((res:Response)) => res.json());
+            .map((res:Response) => res.json());
     }
 
-    getNote(id : Number) : {
+    getNote(id : Number) {
         return this.http.get(this.notesUrl + "/" + id)
-            .map((res:Response)) => res.json());
+            .map((res:Response) => res.json());
     }
 
-    createNote(note : Any) : {
-        return this.http.post(this.notesUrl, JSON.stringify(note));
+    createNote(note : any) {
+        return this.http.post(this.notesUrl, this.serialize(note));
     }
 
-    updateNote(note : Any) : {
-        return this.http.put(this.notesUrl + "/" +  note.id, JSON.stringify(note));
+    updateNote(note : any) {
+        return this.http.put(this.notesUrl + "/" +  note.id, this.serialize(note));
     }
 
-    deleteNote(id : Number) : {
-        return this.http.delete(this.notesUrl + "/" + id)
-            .map((res:Response)) => res.json());
+    deleteNote(note : any) {
+        return this.http.delete(this.notesUrl + "/" + note.id);
+    }
+
+    private serialize(note: any) {
+        return JSON.stringify({
+            'title': note.title,
+            'content': note.content,
+            'categorie': note.categorie.id,
+        });
     }
 }

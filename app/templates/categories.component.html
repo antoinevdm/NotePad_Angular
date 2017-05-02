@@ -6,7 +6,7 @@
     <div *ngIf="display && selectedCat == cat.id">
         <br>
         <new-cat (cancelEvent)="modifyCat(cat)"
-            [modifiedCat]="catToModify">
+            [modifiedCat]="catToModify" (submitEvent)='onSubmitEvent($event)'>
         </new-cat>
     </div>
 </div>
@@ -31,7 +31,7 @@
             <div *ngIf="display && selectedCat == cat.id">
                 <br>
                 <new-cat (cancelEvent)="modifyCat(cat)"
-                    [modifiedCat]="catToModify">
+                    [modifiedCat]="catToModify" (submitEvent)='onSubmitEvent($event)'>
                 </new-cat>
             </div>
         </div>

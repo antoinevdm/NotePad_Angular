@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component, Output, OnInit, Input, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { notesComponent } from './notes.component';
+import { CategorieService } from './categorie.service';
 
 @Component({
     selector : 'new-note', //selector "new-note" can be used as a html tag now
@@ -9,9 +10,9 @@ import { notesComponent } from './notes.component';
 
 export class newNoteComponent implements OnInit {
     @Output() cancelEvent: EventEmitter<any> = new EventEmitter<any>();
+    @Output() submitEvent: EventEmitter<any> = new EventEmitter();
     @Input() modifiedNote: any;
-
-    categories = ['todo', 'remarque', 'nePasOublier', 'autre'];
+    @Input() categories: any;
 
     noteFormGroup: FormGroup;
 
@@ -20,7 +21,6 @@ export class newNoteComponent implements OnInit {
             noteTitle: new FormControl(),
             noteContent: new FormControl()
         });
-        // TODO : trouble shoot empty while new note
     }
 
     onCanceled() {
@@ -28,5 +28,6 @@ export class newNoteComponent implements OnInit {
     }
 
     onNoteSubmit() {
+        this.submitEvent.emit(this.modifiedNote);
     }
 }

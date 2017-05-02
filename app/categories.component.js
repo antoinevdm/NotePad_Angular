@@ -9,8 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var categorie_service_1 = require('./categorie.service');
 var categoriesComponent = (function () {
-    function categoriesComponent() {
+    function categoriesComponent(categorieService) {
+        this.categorieService = categorieService;
         this.display = false;
         this.selectedCat = 0;
         this.catToModify = null;
@@ -18,22 +20,27 @@ var categoriesComponent = (function () {
                 "id": 0,
                 "name": ""
             }];
-        this.categories = [{
-                "id": 1,
-                "name": "remarque"
-            }, {
-                "id": 2,
-                "name": "todo"
-            }, {
-                "id": 3,
-                "name": "nePasOublier"
-            }, {
-                "id": 4,
-                "name": "autre"
-            }];
     }
+    categoriesComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.categorieService.getCategories().subscribe(function (data) { _this.categories = JSON.parse(data); }, function (err) { return console.log(err); }, function () { return console.log('categories charged'); });
+    };
+    categoriesComponent.prototype.onSubmitEvent = function (cat) {
+        this.display = false;
+        if (this.selectedCat == 0) {
+            this.categories.push(cat);
+            this.categorieService.createCategorie(cat).subscribe(function (data) { return console.log(data); }, function (err) { return console.log(err); }, function () { return console.log('categorie added'); });
+        }
+        else {
+            this.categorieService.updateCategorie(cat).subscribe(function (data) { return console.log(data); }, function (err) { return console.log(err); }, function () { return console.log('categorie updated'); });
+        }
+    };
     categoriesComponent.prototype.deleteCat = function (cat) {
-        // TODO: delete category in databe using API
+        this.categorieService.deleteCategorie(cat).subscribe(function (data) { return console.log(data); }, function (err) { return console.log(err); }, function () { return console.log('categorie deleted'); });
+        var index = this.categories.findIndex(function (n) { return (n === cat); });
+        if (index != -1) {
+            this.categories.splice(index, 1);
+        }
     };
     categoriesComponent.prototype.modifyCat = function (cat) {
         if (this.display == true && this.selectedCat == cat.id) {
@@ -53,8 +60,9 @@ var categoriesComponent = (function () {
         core_1.Component({
             selector: 'categories',
             templateUrl: 'app/templates/categories.component.html',
+            providers: [categorie_service_1.CategorieService],
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [categorie_service_1.CategorieService])
     ], categoriesComponent);
     return categoriesComponent;
 }());

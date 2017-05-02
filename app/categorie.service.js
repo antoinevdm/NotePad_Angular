@@ -18,6 +18,29 @@ var CategorieService = (function () {
         this.http = http;
         this.catUrl = 'http://localhost/first_project/web/app_dev.php/note/api/categorie';
     }
+    CategorieService.prototype.getCategories = function () {
+        return this.http.get(this.catUrl)
+            .map(function (res) { return res.json(); });
+    };
+    CategorieService.prototype.getCategorie = function (id) {
+        return this.http.get(this.catUrl + "/" + id)
+            .map(function (res) { return res.json(); });
+    };
+    CategorieService.prototype.createCategorie = function (cat) {
+        return this.http.post(this.catUrl, this.serialize(cat));
+    };
+    CategorieService.prototype.updateCategorie = function (cat) {
+        return this.http.put(this.catUrl + "/" + cat.id, this.serialize(cat));
+    };
+    CategorieService.prototype.deleteCategorie = function (cat) {
+        return this.http.delete(this.catUrl + "/" + cat.id);
+    };
+    CategorieService.prototype.serialize = function (cat) {
+        return JSON.stringify({
+            'id': cat.id,
+            'name': cat.name,
+        });
+    };
     CategorieService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
@@ -25,30 +48,4 @@ var CategorieService = (function () {
     return CategorieService;
 }());
 exports.CategorieService = CategorieService;
-return this.http.get(this.catUrl)
-    .map();
-res.json();
-;
-getCategorie(id, Number);
-{
-    return this.http.get(this.catUrl + "/" + id)
-        .map();
-    res.json();
-    ;
-}
-createCategorie(cat, Any);
-{
-    return this.http.post(this.catUrl, JSON.stringify(cat));
-}
-updateCategorie(cat, Any);
-{
-    return this.http.put(this.catUrl + "/" + cat.id, JSON.stringify(cat));
-}
-deleteCategorie(id, Number);
-{
-    return this.http.delete(this.catUrl + "/" + id)
-        .map();
-    res.json();
-    ;
-}
 //# sourceMappingURL=categorie.service.js.map

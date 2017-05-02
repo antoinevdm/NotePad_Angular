@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var router_1 = require('@angular/router');
+var http_1 = require('@angular/http');
 var app_component_1 = require('./app.component');
 var notes_component_1 = require('./notes.component');
 var newNote_component_1 = require('./newNote.component');
@@ -29,7 +30,7 @@ var AppModule = (function () {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, router_1.RouterModule.forRoot(appRoutes)],
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, router_1.RouterModule.forRoot(appRoutes), http_1.HttpModule],
             declarations: [app_component_1.AppComponent, newNote_component_1.newNoteComponent, categories_component_1.categoriesComponent,
                 notes_component_1.notesComponent, newCat_component_1.newCatComponent, about_component_1.aboutComponent],
             bootstrap: [app_component_1.AppComponent]

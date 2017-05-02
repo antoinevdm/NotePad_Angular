@@ -13,6 +13,7 @@ var forms_1 = require('@angular/forms');
 var newCatComponent = (function () {
     function newCatComponent() {
         this.cancelEvent = new core_1.EventEmitter();
+        this.submitEvent = new core_1.EventEmitter();
     }
     newCatComponent.prototype.ngOnInit = function () {
         this.noteFormGroup = new forms_1.FormGroup({
@@ -22,12 +23,17 @@ var newCatComponent = (function () {
     newCatComponent.prototype.onCanceled = function () {
         this.cancelEvent.emit();
     };
-    newCatComponent.prototype.onNoteSubmit = function () {
+    newCatComponent.prototype.onCatSubmit = function () {
+        this.submitEvent.emit(this.modifiedCat);
     };
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
     ], newCatComponent.prototype, "cancelEvent", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], newCatComponent.prototype, "submitEvent", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
