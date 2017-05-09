@@ -1,0 +1,43 @@
+<ion-header *ngFor="let cat of emptyCat">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Categories</ion-title>
+    <ion-buttons end>
+        <button ion-button (click)="modifyCat(cat)">
+            <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-card *ngIf="display && selectedCat == cat.id">
+    <ion-card-content>
+         <br>
+         <new-cat (cancelEvent)="modifyCat(cat)"
+             [modifiedCat]="catToModify" (submitEvent)='onSubmitEvent($event)'>
+         </new-cat>
+    </ion-card-content>
+ </ion-card>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-card *ngFor="let cat of categories">
+            <ion-card-header>
+                {{cat.name}}
+            </ion-card-header>
+            <ion-card-content>
+                <button ion-button small (click)="deleteCat(cat)">
+                        Supprimer</button>
+                <button ion-button small (click)="modifyCat(cat)">
+                        Modifier</button>
+                <div *ngIf="display && selectedCat == cat.id">
+                    <br>
+                    <new-cat (cancelEvent)="modifyCat(cat)"
+                        [modifiedCat]="catToModify" (submitEvent)='onSubmitEvent($event)'>
+                    </new-cat>
+                </div>
+            </ion-card-content>
+        </ion-card>
+    </ion-list>
+</ion-content>

@@ -1,0 +1,40 @@
+<div class="well well-lg">
+    <ion-title>Editer une note</ion-title>
+    <form>
+      <div class="form-group">
+        <ion-item>
+            <ion-label stacked for="title">Titre :</ion-label>
+            <ion-input type="text" class="form-control"
+                id="title" [(ngModel)]="modifiedNote.title"
+                 [ngModelOptions]="{standalone: true}" required>
+             </ion-input>
+        </ion-item>
+      </div>
+      <div class="form-group">
+          <ion-item>
+            <ion-label stacked for="content">Contenu :</ion-label>
+            <ion-input type="text" class="form-control"
+                id="content" [(ngModel)]="modifiedNote.content"
+                 [ngModelOptions]="{standalone: true}">
+             </ion-input>
+        </ion-item>
+      </div>
+      <div class="form-group">
+          <ion-item>
+              <ion-label stacked for="categorie">Catégorie :</ion-label>
+              <ion-select class="form-control" id="categorie"
+              [(ngModel)]="modifiedNote.categorie"
+               [ngModelOptions]="{standalone: true}">
+                <ion-option *ngFor="let cat of categories"
+                    [value]="cat">{{cat.name}}
+                </ion-option>
+            </ion-select>
+        </ion-item>
+      </div>
+      <button ion-button small (click)="onNoteSubmit()" class="btn btn-success">
+            Valider</button>
+      <button ion-button small (click)="onCanceled()" class="btn btn-danger">
+            Annuler</button>
+    </form>
+    <br>
+</div>

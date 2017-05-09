@@ -1,0 +1,17 @@
+<div class="well well-lg">
+    <ion-title>Editer catégorie</ion-title>
+    <form>
+      <div class="form-group">
+        <ion-item>
+            <ion-label for="title">Nom :</ion-label>
+            <ion-input type="text" class="form-control"
+                id="name" [(ngModel)]="modifiedCat.name"
+                [ngModelOptions]="{standalone: true}" required></ion-input>
+        </ion-item>
+      </div>
+      <button ion-button small (click)="onCatSubmit()"
+            class="btn btn-success">Valider</button>
+      <button ion-button small (click)="onCanceled()"
+            class="btn btn-danger">Annuler</button>
+    </form>
+</div>
